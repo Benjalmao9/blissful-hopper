@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discord TTS Control Panel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background-orbs">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+    </div>
+
+    <div class="container">
+        <header>
+            <div class="header-info">
+                <h1>Panel de Control TTS</h1>
+                <p>Gestiona tu bot de lectura de voz en tiempo real</p>
+            </div>
+            <div class="status-badge" id="botStatus">
+                <span class="indicator"></span>
+                <span class="text">Desconectado</span>
+            </div>
+        </header>
+
+        <main class="grid-layout">
+            <!-- Bot Status Card -->
+            <section class="card glass-card">
+                <h2>Estado del Bot</h2>
+                <div class="card-content">
+                    <div class="info-row">
+                        <span class="label">Nombre:</span>
+                        <span class="value" id="valBotName">-</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="label">Servidor Activo:</span>
+                        <span class="value" id="valGuild">-</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="label">Canal de Voz:</span>
+                        <span class="value highlight" id="valVoiceChannel">-</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Voice Settings Card -->
+            <section class="card glass-card">
+                <h2>Configuración de Voz</h2>
+                <div class="card-content form-layout">
+                    <div class="form-group">
+                        <label for="langSelect">Idioma de Lectura</label>
+                        <select id="langSelect">
+                            <option value="es">Español (ES)</option>
+                            <option value="en">Inglés (EN)</option>
+                            <option value="fr">Francés (FR)</option>
+                            <option value="pt">Portugués (PT)</option>
+                            <option value="it">Italiano (IT)</option>
+                            <option value="ja">Japonés (JA)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="speedSelect">Velocidad</label>
+                        <select id="speedSelect">
+                            <option value="false">Normal</option>
+                            <option value="true">Lento</option>
+                        </select>
+                    </div>
+                    <button class="btn-primary" id="btnSaveSettings">Guardar Ajustes</button>
+                </div>
+            </section>
+
+            <!-- Live Broadcast Card -->
+            <section class="card glass-card full-width">
+                <h2>Transmisión en Vivo</h2>
+                <p class="subtitle">Escribe un mensaje para que el bot lo lea instantáneamente en el canal de voz actual.</p>
+                <div class="broadcast-layout">
+                    <input type="text" id="ttsInput" placeholder="Ej: Hola a todos, ¿cómo están?..." autocomplete="off">
+                    <button class="btn-accent" id="btnSpeak">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+                        Hablar
+                    </button>
+                </div>
+            </section>
+
+            <!-- Spoken Logs Card -->
+            <section class="card glass-card full-width">
+                <h2>Historial de Lecturas</h2>
+                <div class="logs-container" id="logsContainer">
+                    <div class="empty-state">No hay mensajes recientes...</div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
