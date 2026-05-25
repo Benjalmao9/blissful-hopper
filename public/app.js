@@ -8,8 +8,7 @@ const botStatus = document.getElementById('botStatus');
 const valBotName = document.getElementById('valBotName');
 const valGuild = document.getElementById('valGuild');
 const valVoiceChannel = document.getElementById('valVoiceChannel');
-const langSelect = document.getElementById('langSelect');
-const speedSelect = document.getElementById('speedSelect');
+const voiceSelect = document.getElementById('voice');
 const btnSaveSettings = document.getElementById('btnSaveSettings');
 const ttsInput = document.getElementById('ttsInput');
 const btnSpeak = document.getElementById('btnSpeak');
@@ -58,9 +57,8 @@ function updateDashboardState(state) {
     valGuild.textContent = state.guild;
     valVoiceChannel.textContent = state.voiceChannel;
 
-    if (state.settings) {
-        langSelect.value = state.settings.language;
-        speedSelect.value = state.settings.speed.toString();
+    if (state.settings && state.settings.voice) {
+        voiceSelect.value = state.settings.voice;
     }
 }
 
@@ -95,8 +93,7 @@ btnSaveSettings.addEventListener('click', () => {
     if (!isConnected) return alert('No hay conexión con el servidor.');
     
     const newSettings = {
-        language: langSelect.value,
-        speed: speedSelect.value === 'true'
+        voice: voiceSelect.value
     };
     
     ws.send(JSON.stringify({
